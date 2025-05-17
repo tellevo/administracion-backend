@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package dashboard;
+
+service DashboardService {
+  rpc DashBoardData (DashBoardRequest) returns (EstadisticasGeneralesReply) {}
+  rpc GetPaymentRoutes (DashBoardRequest) returns (PaymentRoutesReply) {}
+}
+
+message DashBoardRequest {
+  string key = 1;
+}
+
+message EstadisticasGeneralesReply {
+  int32 usuariosActivos = 1;
+  int32 viajesCompletados = 2;
+  double kmsCompartidos = 3;
+  double co2Ahorrado = 4;
+  int64 pagosRealizados = 5;
+}
+
+
+message PaymentRoute {
+  int32 rutaId = 1;
+  string fechaPago = 2;
+  string fechaRuta = 3;
+  string txtOrigen = 4;
+  string txtDestino = 5;
+  string nombreConductor = 6;
+  int32 idPasajeroPago = 7;
+  string nombrePagador = 8;
+}
+
+message PaymentRoutesReply {
+  repeated PaymentRoute routes = 1;
+}

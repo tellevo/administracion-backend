@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  tellevoadmin:
+    image: postgres:15
+    networks:
+      - tellevo_network
+    container_name: tellevo-admin-db
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /opt/pgsql/data
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/opt/pgsql/data
+    privileged: true
+
+networks:
+  tellevo_network:
+    external: true
